@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    /* padding: 0; */
+    /* border: 2px solid salmon; */
+}
+html {
+    font-size:62.5%;  
+}
+body{
+    font-size:1.6rem;
+    /* height: 100vh; */
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Manrope", sans-serif;
+    color: #293264;
+    font-weight: 500;
+}
+main{
+    background: #f5f7fb;
+    background-image: url("./images/bg-top.png"), url("./images/bg-bottom.png");
+    background-position: top, bottom;
+    background-repeat: no-repeat, no-repeat;
+    background-size: contain, contain;
+    width:50vw;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    text-align: center;
+    margin: 60px;
+    padding: 25px 15px;
+    padding-bottom: 45px;
+    /* box-shadow: rgba(93, 50, 87, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.495) 0px -2px 6px 0px inset, rgba(0, 0, 0, 0.4) 0px 30px 90px; */
+}
+.startBtn {
+    margin:0;
+    background: #4D5B9E;
+    font-family: "Manrope", sans-serif;  
+    font-size: 1.9rem;
+    color: #F5F7FB;
+    padding: 1em 3.5em;
+    border-radius: 1em;
+    border: none;
+}
+.answerBtn{
+    border-radius: 16px;
+    color: #293264;
+    font-size: 20px;
+    background: #f5f7fb;
+    padding: 10px 20px;
+    border: solid #4D5B9E 1.5px;
+    margin: 3.5px;
+}
+.selected{
+    background: #c4ccf2;
+}
+.check{
+    border-radius: 16px;
+    color: #F5F7FB;
+    font-size: 18px;
+    background: #4D5B9E;
+    padding: 15px 25px;
+    border: none;
+    font-weight: 400;
+    display: block;
+    margin: 40px auto 10px auto;
+}
+.correct{
+    background: #33e08a;
+}
+.wrong{
+    background: #e03333;
+}
+#Amount{
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+    text-indent: 5px;
+    width: 100px;
+    padding: 2.5px;
+    margin-top: 6px;
+}
+#Category{
+    display: block;
+    margin: auto;
+    text-indent: 5px;
+    width: 200px;
+    padding: 3px;
+    margin-top: 6px;
+    margin-bottom: 50px;   
+}
+#title{
+    margin-top: 50px;
+    margin-bottom: 30px;
+    word-spacing: 3px;
+    color: #394688;
+}
+.intro{
+    box-sizing: content-box;
+    margin: 5px;
+}
+strong{
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+h2{
+    margin-bottom: 20px;
+}
+label{
+    font-weight: 600;
+}
+.quiz{
+    margin: auto;
+    width: 80%
+}
+.question{
+    margin-top: 20px;
+}
+h3{
+    margin-top: 20px;
+}
+     
+
+
