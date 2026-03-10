@@ -2,6 +2,10 @@
 
 A dynamic trivia quiz app built with React and Vite. Fetches real questions from the Open Trivia DB API, lets you customise your quiz, and scores you at the end.
 
+## Live Demo
+
+🔗 [capstonequizproject.netlify.app](https://capstonequizproject.netlify.app/)
+
 ## Features
 
 - Choose your quiz category and number of questions before starting
@@ -10,6 +14,7 @@ A dynamic trivia quiz app built with React and Vite. Fetches real questions from
 - Select an answer for each question, then check your score when done
 - Loading spinner while questions are being fetched
 - Score shown as both a fraction and percentage
+- Play Again button to restart without refreshing the page
 
 ## Tech Stack
 
@@ -35,10 +40,6 @@ npm install
 # Start the dev server
 npm run dev
 ```
-
-## Live Demo
-
-> Coming soon — deploying to Netlify
 
 ---
 
