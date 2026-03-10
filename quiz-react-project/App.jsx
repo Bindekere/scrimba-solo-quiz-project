@@ -1,5 +1,4 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import Intro from './components/Intro'
 import Question from './components/Question'
 import decodeHtml from './components/DecodeHtml'
@@ -12,7 +11,10 @@ function App() {
   const [settings, setSettings] = useState({})
   const [loading, setLoading] = useState(false)
 
-  useEffect(() => APIcall(), [settings])
+  useEffect(() => {
+    if (!settings.gameStarted) return
+    APIcall()
+  }, [settings])
 
   function handleSettings(event) {
     event.preventDefault()
@@ -26,7 +28,6 @@ function App() {
   }
 
   function APIcall() {
-    if (!settings.gameStarted) return
     fetch(`https://opentdb.com/api.php?amount=${settings.amount}&category=${settings.category}`)
       .then(res => res.json())
       .then(data => {
@@ -37,6 +38,7 @@ function App() {
           answers = answers.map(answer => decodeHtml(answer))
           return {
             ...questionObject,
+            question: decodeHtml(questionObject.question), // decode once, store decoded
             allAnswers: answers,
             isSelected: '',
             correctAnswerIndex: correctAnsIndex
@@ -51,8 +53,19 @@ function App() {
       })
   }
 
+  // Use questionIndex to identify which question was answered — avoids
+  // matching on question text which can fail when HTML entities are present
+  const handleClick = useCallback((questionIndex, answerIndex) => {
+    setQuestionData(prev => prev.map((q, i) => {
+      if (i === questionIndex) {
+        return { ...q, isSelected: answerIndex }
+      }
+      return q
+    }))
+  }, [])
+
   function answeredAll(array) {
-    return array.every(obj => obj.isSelected === 0 ? true : obj.isSelected)
+    return array.length > 0 && array.every(obj => obj.isSelected === 0 ? true : obj.isSelected)
   }
 
   function checkAnswers() {
@@ -64,30 +77,18 @@ function App() {
     setAnswerCount(count)
   }
 
-  const questionElements = questionData.map((questionObject, index) => {
-    function handleClick(event) {
-      const { name, id, dataset } = event.target
-      const newData = questionData.map(q => {
-        if (q.question === dataset.question) {
-          return { ...q, [name]: parseInt(id) }
-        }
-        return q
-      })
-      setQuestionData(newData)
-    }
-
-    return (
-      <Question
-        key={index}
-        question={decodeHtml(questionObject.question)}
-        answers={questionObject.allAnswers}
-        handleClick={handleClick}
-        selected={questionObject.isSelected}
-        allAnswersChecked={allAnswersChecked}
-        correctAnswerIndex={questionObject.correctAnswerIndex}
-      />
-    )
-  })
+  const questionElements = questionData.map((questionObject, index) => (
+    <Question
+      key={index}
+      questionIndex={index}
+      question={questionObject.question}
+      answers={questionObject.allAnswers}
+      handleClick={handleClick}
+      selected={questionObject.isSelected}
+      allAnswersChecked={allAnswersChecked}
+      correctAnswerIndex={questionObject.correctAnswerIndex}
+    />
+  ))
 
   return (
     <main>
