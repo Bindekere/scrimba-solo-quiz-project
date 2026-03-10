@@ -38,7 +38,7 @@ function App() {
           answers = answers.map(answer => decodeHtml(answer))
           return {
             ...questionObject,
-            question: decodeHtml(questionObject.question), // decode once, store decoded
+            question: decodeHtml(questionObject.question),
             allAnswers: answers,
             isSelected: '',
             correctAnswerIndex: correctAnsIndex
@@ -53,8 +53,6 @@ function App() {
       })
   }
 
-  // Use questionIndex to identify which question was answered — avoids
-  // matching on question text which can fail when HTML entities are present
   const handleClick = useCallback((questionIndex, answerIndex) => {
     setQuestionData(prev => prev.map((q, i) => {
       if (i === questionIndex) {
@@ -75,6 +73,14 @@ function App() {
       if (item.isSelected === item.correctAnswerIndex) count++
     })
     setAnswerCount(count)
+  }
+
+  function playAgain() {
+    setQuestionData([])
+    setAllAnswersChecked(false)
+    setAnswerCount(null)
+    setSettings({})
+    setLoading(false)
   }
 
   const questionElements = questionData.map((questionObject, index) => (
@@ -98,11 +104,14 @@ function App() {
             {settings.gameStarted === true
               ? <div className='quiz'>
                   {questionElements}
-                  {answeredAll(questionData) && (
+                  {answeredAll(questionData) && !allAnswersChecked && (
                     <button className='check' onClick={checkAnswers}>Check Answers</button>
                   )}
                   {allAnswersChecked && (
-                    <h3>{`Score: ${answerCount} / ${questionData.length} (${Math.round((answerCount / questionData.length) * 100)}%)`}</h3>
+                    <div className='results'>
+                      <h3>{`Score: ${answerCount} / ${questionData.length} (${Math.round((answerCount / questionData.length) * 100)}%)`}</h3>
+                      <button className='check' onClick={playAgain}>Play Again</button>
+                    </div>
                   )}
                 </div>
               : <Intro handleFormData={handleSettings} />}
