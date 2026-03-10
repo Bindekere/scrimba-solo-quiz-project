@@ -1,3 +1,45 @@
-# scrimba-solo-quiz-project
+# Trivia Quiz App
 
-The last solo project in the scimba frontend career path. It is a great test of react, css, APIs and javscript skills. Personally, I learnt alot from working on this project starting from scratch and it really tested and improved my React skills.
+A dynamic trivia quiz app built with React and Vite. Fetches real questions from the Open Trivia DB API, lets you customise your quiz, and scores you at the end.
+
+## Features
+
+- Choose your quiz category and number of questions before starting
+- Questions and answer options fetched live from the [Open Trivia Database](https://opentdb.com/)
+- Answers are randomly shuffled on every load so the correct answer is never in the same position
+- Select an answer for each question, then check your score when done
+- Loading spinner while questions are being fetched
+- Score shown as both a fraction and percentage
+
+## Tech Stack
+
+- React
+- JavaScript (ES6+)
+- CSS
+- Vite
+- [Open Trivia DB API](https://opentdb.com/api_config.php)
+- [spinners-react](https://www.npmjs.com/package/spinners-react)
+
+## How to Run Locally
+
+```bash
+# Clone the repo
+git clone https://github.com/Bindekere/scrimba-solo-quiz-project.git
+
+# Navigate into the project folder
+cd scrimba-solo-quiz-project/quiz-react-project
+
+# Install dependencies
+npm install
+
+# Start the dev server
+npm run dev
+```
+
+## Live Demo
+
+> Coming soon — deploying to Netlify
+
+---
+
+Built by [Aaron Lutalo](https://github.com/Bindekere)
