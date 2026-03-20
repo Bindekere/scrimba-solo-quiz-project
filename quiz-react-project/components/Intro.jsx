@@ -1,23 +1,31 @@
-import React from "react";
+import React from 'react'
 
-export default function Intro(props){
-    return(
+export default function Intro(props) {
+    return (
         <div className="intro">
-            <p id="title" >Let's get <strong>Quizzical</strong></p>
+            <p id="title">Let's get <strong>Quizzical</strong></p>
             <h2>Settings</h2>
-        
-            <form onSubmit={props.handleFormData}>
-                <label htmlFor="Amount">Number of Questions:</label>
-                <input type="number" id="Amount" name="amount" min="1" max="20" required></input>
 
-                <label htmlFor="Category">Select Category:</label>
+            <form onSubmit={props.handleFormData}>
+                <label htmlFor="Amount">Number of Questions</label>
+                <input
+                    type="number"
+                    id="Amount"
+                    name="amount"
+                    placeholder="e.g. 5"
+                    min="1"
+                    max="20"
+                    required
+                />
+
+                <label htmlFor="Category">Category</label>
                 <select name="category" id="Category" required>
                     <option value="10">Any Category</option>
                     <option value="9">General Knowledge</option>
                     <option value="21">Sports</option>
                     <option value="20">Mythology</option>
                     <option value="22">Geography</option>
-                    <option value="17">Science & Nature</option>
+                    <option value="17">Science &amp; Nature</option>
                     <option value="19">Science: Mathematics</option>
                     <option value="18">Science: Computers</option>
                     <option value="25">Art</option>
@@ -29,11 +37,11 @@ export default function Intro(props){
                     <option value="12">Entertainment: Music</option>
                     <option value="15">Entertainment: Video Games</option>
                     <option value="16">Entertainment: Board Games</option>
-                    <option value="32">Entertainment: Cartoon & Animations</option>
+                    <option value="32">Entertainment: Cartoons &amp; Animations</option>
                 </select>
-                
-                <button className="startBtn">Start quiz</button>
+
+                <button className="startBtn" type="submit">Start Quiz</button>
             </form>
-        </div> 
+        </div>
     )
 }

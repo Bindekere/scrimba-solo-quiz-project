@@ -83,6 +83,18 @@ function App() {
     setLoading(false)
   }
 
+  const score = answerCount !== null
+    ? Math.round((answerCount / questionData.length) * 100)
+    : 0
+
+  const scoreMessage = score === 100
+    ? 'Perfect score! 🎉'
+    : score >= 70
+    ? 'Great job! 🙌'
+    : score >= 40
+    ? 'Not bad, keep going!'
+    : 'Better luck next time!'
+
   const questionElements = questionData.map((questionObject, index) => (
     <Question
       key={index}
@@ -99,7 +111,9 @@ function App() {
   return (
     <main>
       {loading
-        ? <SpinnerInfinity enabled={true} color="#4D5B9E" secondaryColor="#ababab" />
+        ? <div className="spinner-wrap">
+            <SpinnerInfinity enabled={true} color="#4D5B9E" secondaryColor="#c4ccf2" size={64} />
+          </div>
         : <>
             {settings.gameStarted === true
               ? <div className='quiz'>
@@ -109,7 +123,8 @@ function App() {
                   )}
                   {allAnswersChecked && (
                     <div className='results'>
-                      <h3>{`Score: ${answerCount} / ${questionData.length} (${Math.round((answerCount / questionData.length) * 100)}%)`}</h3>
+                      <h3>{answerCount} / {questionData.length} correct</h3>
+                      <p>{scoreMessage}</p>
                       <button className='check' onClick={playAgain}>Play Again</button>
                     </div>
                   )}

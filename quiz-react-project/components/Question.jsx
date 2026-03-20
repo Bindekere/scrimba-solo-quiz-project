@@ -12,8 +12,10 @@ export default function Question({
   const answerElements = answers.map((item, index) => {
     let btnClass = 'answerBtn'
     if (allAnswersChecked) {
-      if (index === selected) {
-        btnClass += selected === correctAnswerIndex ? ' correct' : ' wrong'
+      if (index === correctAnswerIndex) {
+        btnClass += ' correct'
+      } else if (index === selected) {
+        btnClass += ' wrong'
       }
     } else {
       if (index === selected) {
@@ -22,21 +24,23 @@ export default function Question({
     }
 
     return (
-      <input
+      <button
         key={index}
         className={btnClass}
-        type="button"
-        value={item}
         disabled={allAnswersChecked}
         onClick={() => handleClick(questionIndex, index)}
-      />
+      >
+        {item}
+      </button>
     )
   })
 
   return (
-    <div>
-      <h2 className="question">{question}</h2>
-      {answerElements}
+    <div className="question-card">
+      <h2>{question}</h2>
+      <div className="answers">
+        {answerElements}
+      </div>
     </div>
   )
 }
